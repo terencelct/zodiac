@@ -16,7 +16,7 @@ shinyServer(function(input,output){
     
     bins <- seq(min(x), max(x), length.out = input$bins + 1)
     hist(x)
-    h<-hist(x, breaks=bins, col="green",xlim=c(min(Rdata2[,colm]),max(Rdata2[,colm])),ylim=c(0,500), xlab="Housing price(fixed axis scale)",main="Histogram and PDF") 
+    h<-hist(x, breaks=bins, col="green",xlim=c(min(Rdata2[,colm]),max(Rdata2[,colm])),ylim=c(0,600), xlab="Housing price(fixed axis scale)",main="Histogram and PDF") 
     xfit<-seq(min(x),max(x),length=40) 
     yfit<-dnorm(xfit,mean=mean(x),sd=sd(x)) 
     yfit <- yfit*diff(h$mids[1:2])*length(x) 
@@ -40,9 +40,9 @@ shinyServer(function(input,output){
     x <- newd3[,colm]
     
     
-    plot(ecdf(x),main="CDF plot comparison",xlab="Housing price")
-    lines(ecdf(y),col.points  = "blue", col.hor = "blue")
-    legend(1, 95, legend=c("Line 1", "Line 2"))
+    plot(ecdf(x),col="blue",main="CDF plot comparison",xlab="Housing price")
+    plot(ecdf(y), col="red", add=TRUE)
+    legend('left', c('Periods with Dragon baby effect', "Periods with other zodaic effect"), fill=c("blue" ,"red"), border=NA)
     
     
   }
